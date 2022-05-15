@@ -1,0 +1,57 @@
+{% extends "deeplearning/base.html" %}
+{% load static %}
+	    {% block content %}
+ <section class="cta-section theme-bg-light py-5">
+		    <div class="container text-center">
+			    <h2 class="heading">ADDS is Django Based "Agriculture Diseases Detection System" for Plant Disease Detection.</h2>
+			    <div class="intro">Welcome to my ADDS for Plant Disease Detection. </div>
+		    </div><!--//container-->
+	    </section>
+	    <article class="blog-post px-3 py-5 p-md-5">
+		    <div class="container" style="he">
+			    <header class="blog-post-header">
+				    <h2 class="title mb-2">Agriculture Diseases Detection</h2>
+			    </header>
+                <section id="one" class="wrapper style1">
+                    <div class="item mb-5">
+                        <div class="media">
+                        {% if predictions %}
+                            <P><img  width="350" src="{{ url }}"></P>
+                            <div class="media-body" style="margin-left:20px;">
+                                <div class="intro">
+                                    <h2>Crop species & Health status Predictions: </h2>
+                                    {% for prediction in predictions %}
+                                        <p>{{ prediction.pred }}</p>
+                                    {% endfor %}
+                                    <a class="btn btn-primary" href="{% url 'predict'%}">Predict Again</a>
+                                </div>
+                            </div>
+                        {% else %}
+                            <P><img id="output" width="350" height="330" ></P>
+                            <div class="media-body" style="margin-left:20px;">
+                                <h2>{{ title }}</h2><br/>
+                                <strong>ResNet Trained on PlantVillage Dataset</strong>
+                                <div class="intro">
+                                    <strong>Note: </strong>Upload image to the django web service serving the classification model and then predict
+                                        <form method="post" enctype=multipart/form-data>
+                                            {% csrf_token %}
+                                          <p>
+                                            <input type="file" accept="image/*" name="myfile" id="file" onchange="loadFile(event)" required>
+                                            <input type=submit value="Predict" class="special">
+                                          </p>
+                                            {{ form }}
+                                        </form>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                      <script>
+                            var loadFile = function(event) {
+                              var image = document.getElementById('output');
+                              image.src = URL.createObjectURL(event.target.files[0]);
+                            };
+                      </script>
+                </section>
+            </div>
+	    </article>
+	    {% endblock %}

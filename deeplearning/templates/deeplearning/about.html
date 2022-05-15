@@ -1,0 +1,35 @@
+{% extends "deeplearning/base.html" %}
+{% load static %}
+	    {% block content %}
+	    <article class="about-section py-5">
+
+		    <div class="container"><br>
+			    <h2 class="title mb-3">About Agriculture Diseases Detection System</h2>
+				<p>
+					ADDS is Django Based "Agriculture Diseases Detection System" for Plant Disease Detection. The dataset was collected from here containing 54,306 images of 14 different crops, then split into 80% training and 20% validation set.
+					We trained a ResNet50 model via transfer learning using a Google Colaboratory GPU. We obtained a validation accuracy of 98.47%. The model is able to distinguish between 38 different classes (crop species and health status).
+				</p>
+
+		    </div>
+			<hr>
+			 <section class="blog-list px-3 py-5 p-md-5">
+		    <div class="container">
+				<h4 class="heading">Team Members</h4><br>
+			    <div class="item mb-10">
+				    <div class="media">
+              			 <div class="media-body">
+							 <img  src="{% static 'deeplearning/images/SatyamTiwari.jpg' %}" alt="Member1" width="300px;" height="300px;">
+					   		<h5 class="title mb-1">Satyam Tiwari</h5>
+						 </div>
+						 <div class="media-body">
+							 <img  src="{% static 'deeplearning/images/SandeepKumarVishwakarma.jpg' %}" alt="Member2" width="300px;" height="300px;">
+					   		<h5 class="title mb-1">Sandeep Kumar Vishwakarma</h5>
+						 </div>
+				    </div><!--//media-->
+			    </div>
+			</div>
+			 </section>
+
+		    </div>
+	    </article>
+	    {% endblock %}
